@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="column">
+  {% if message %}
+    <div>{{ message }}</div>
+
+    {% if upload_filename %}
+      <div class="card-image">
+        <figure class="image">
+          
+          <lottie-player class="lottiefile" src="{{ upload_url }}" background="transparent"  speed="1" loop autoplay></lottie-player>'
+        </figure>
+      </div>
+    {% endif %}
+  {% endif %}
+  
+  <h2>Upload LottieFile</h2>
+
+  <form method='POST' enctype='multipart/form-data'>
+    {{ form.hidden_tag() }}
+    {{ form.file() }}
+    {{ form.submit() }}
+  </form>
+</div>
+{% endblock %}

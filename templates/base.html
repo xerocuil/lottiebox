@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ get_app_title() }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <script src="static/lottie-player.js"></script>
+</head>
+<body>
+
+<!-- page -->
+<div id="page" class="container has-text-centered">
+
+<!-- front -->
+<div id="front" class="columns">
+  <div class="column has-text-left">
+    <h1><a href="/">Lottiefiles</a></h1>
+  </div>
+
+  <nav class="column has-text-right">
+    <ul>
+      <li><a class="button is-large" href="/upload">Upload</a></li>
+      <li>{{ get_version() }}</li>
+    </ul>
+  </nav>
+</div>
+
+<!-- body_content -->
+<div id="body_content" class="columns">
+  <!-- article -->
+  <article class="column is-three-quarters">
+    <!-- article_main -->
+    <div id="article_main" class="columns">
+
+    {% block body %}
+
+    {% endblock %}
+
+    </div><!-- End article_main -->
+  </article><!-- End body_article -->
+
+  <!-- Sidebar -->
+  <div class="column">
+    <pre>SIDEBAR</pre>
+  </div>
+
+</div><!-- End body_content -->
+</div><!-- End page -->
+</body>
+</html>
