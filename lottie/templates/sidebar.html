@@ -1,0 +1,19 @@
+    <div class="panel">
+      <div class="panel-heading">Search</div>
+      
+      <div class="panel-block">
+        <form action="{{ url_for('lottiebox_search') }}?q">
+          <input class="input is-rounded" size="100%" id="search" name="q" type="text" value="" placeholder="Search Name or Tags" />
+        </form>
+      </div>
+
+      <div class="panel-heading">Tags</div>
+
+      <div id="tags">
+        {% for t in get_tag_arr() %}
+        <a href="{{ url_for('lottiebox_search') }}?q={{ t }}" />
+          <span>{{ t }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>

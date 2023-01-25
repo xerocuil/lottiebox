@@ -1,0 +1,34 @@
+{% if sort  %}
+  {% set sortopt = sort %}
+{% else %}
+  {% set sortopt = "modified" %}
+{% endif %}
+
+{% if order == "asc"  %}
+  {% set orderopt = 0 %}
+{% elif order == "desc" %}
+  {% set orderopt = 1 %}
+{% else %}
+  {% set orderopt = 1 %}
+{% endif %}
+
+{% for l in query_results | sort(attribute=sortopt, reverse = orderopt) %}
+<div class="column is-one-fifth">
+  <div class="card">
+    <div class="card-image">
+      <figure class="lottiefile image is-128x128"><a href="{{ url_for('lottiebox_view', filename=l['basename']) }}">
+        <lottie-player src="{{ url_for('lottiebox_file', filename=l['basename']) }}" background="transparent"  speed="1" loop {{ set_autoplay() }}></lottie-player>
+      </a></figure>
+    </div>
+    <div class="card-content">
+      <p>{{ l['caption'] }}</p>
+      <p><a href="{{ url_for('lottiebox_file', filename=l['basename']) }}" download>&#8595; Download</a></p>
+    </div>
+  </div>
+</div>
+
+{% if row_split(5,loop.index) == True -%}
+</div><div class="columns">
+{%- endif %}
+
+{% endfor %}

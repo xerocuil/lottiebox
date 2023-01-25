@@ -3,48 +3,89 @@
 <head>
   <meta charset="utf-8">
   <title>{{ get_app_title() }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-  <script src="static/lottie-player.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bulma.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.min.css') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/img/favicon.ico') }}">
+  <script src="{{ url_for('static', filename='assets/js/lottie-player.js') }}"></script>
 </head>
 <body>
+
+<!-- front -->
+<div id="front">
+  <div class="container">
+    <div class="columns">
+      <div id="site-title" class="column is-one-fourth has-text-left">
+        <a href="{{ url_for('lottiebox_index') }}"><img src="{{ url_for('static', filename='assets/img/logo.svg') }}" alt="LottieBox Logo"></a>
+      </div>
+
+      <div id="search" class="column is-one-fifth">
+        <form action="{{ url_for('lottiebox_search') }}?q">
+          <input class="input is-rounded" size="100%" id="search" name="q" type="text" value="" placeholder="Search Name or Tags" />
+        </form>
+      </div>
+
+      <nav class="column is-narrow">
+        <ul>
+          <li class="nav-item">
+            <span class="sort-dropdown">
+              <span class="dropdown-header">Sort</span>
+              <ul class="sort-content">
+                {% if sort == "basename" and order == "asc" %}
+                <li><a href="{{ url_for('lottiebox_index') }}?sort=basename&order=desc">Name &#8595;</a></li>
+                {% else %}
+                <li><a href="{{ url_for('lottiebox_index') }}?sort=basename&order=asc">Name &#8593;</a></li>
+                {% endif %}
+
+                {% if sort == "modified" and order == "asc" %}
+                <li><a href="{{ url_for('lottiebox_index') }}?sort=modified&order=desc">Modified &#8595;</a></li>
+                {% else %}
+                <li><a href="{{ url_for('lottiebox_index') }}?sort=modified&order=asc">Modified &#8593;</a></li>
+                {% endif %}
+              </ul>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <span class="tags-dropdown">
+              <span class="dropdown-header">Tags</span>
+              <ul class="tags-content">
+                {% for t in get_tag_arr() %}
+                <li>
+                  <a href="{{ url_for('lottiebox_search') }}?q={{ t }}" />{{ t }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url_for('lottiebox_add') }}">+ New</a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
 
 <!-- page -->
 <div id="page" class="container has-text-centered">
 
-<!-- front -->
-<div id="front" class="columns">
-  <div class="column has-text-left">
-    <h1><a href="/">{{ get_app_title() }}</a></h1>
-  </div>
-
-  <nav class="column has-text-right">
-    <ul>
-      <li><a class="button is-large" href="/upload">Upload</a></li>
-    </ul>
-  </nav>
-</div>
-
 <!-- body_content -->
-<div id="body_content" class="columns">
+<div id="body-content" class="columns">
   <!-- article -->
-  <article class="column is-three-quarters">
+  <article class="column">
     <!-- article_main -->
-    <div id="article_main" class="columns">
-
+    <div id="article-main" class="columns">
+      
     {% block body %}
 
     {% endblock %}
 
-    </div><!-- End article_main -->
-  </article><!-- End body_article -->
+    </div>
+  </article>
+</div>
 
-  <!-- Sidebar -->
-  <div class="column">
-    <pre>SIDEBAR</pre>
-  </div>
-
-</div><!-- End body_content -->
-</div><!-- End page -->
+</div>
 </body>
 </html>

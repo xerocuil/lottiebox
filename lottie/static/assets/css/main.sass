@@ -1,0 +1,119 @@
+// Palette
+
+$white:                   #ffffff
+$white-sheer:             #ffffffef
+$deep_sea:                #008a6f
+$caribbean_green:         #00c39d
+$rhino:                   #353564
+
+html
+  font-size: 62.5%
+
+body
+  font-size: 1.6rem
+  background-color: $white
+
+a
+  color: $rhino
+
+a:hover
+  color: $caribbean_green
+
+article
+  margin: 0 auto
+
+h1,h2,p
+  display: block
+  margin-bottom: 2.4rem
+
+h1
+  font-size: 3.2rem
+
+h2
+  font-size: 2.8rem
+
+#body-content
+  margin-top: 6.4rem
+
+#front
+  width: 100%
+  padding-top: 1.6rem
+  background-color: $white-sheer
+  position: fixed
+  top: 0
+  z-index: 100
+
+#front-content
+  margin: 0 auto
+
+#page
+  z-index: 0
+
+#site-title
+  img
+    max-height: 3.2rem
+
+.button
+  color: $white
+  font-weight: 600
+  background-color: $deep_sea
+
+.card
+  padding-top: 1.6rem
+  min-height: 25.6rem
+  max-width: 25.6rem
+
+.dropdown-header
+  cursor: pointer
+
+.file-select
+  margin: 0 auto
+  table
+    margin: 0 auto
+
+.file-input
+  height: 100%
+  opacity: 100%
+  outline: 0
+  position: relative
+
+.lottiefile
+  margin: 0 auto
+
+.lottieviewer
+  height: 512px
+  width: auto
+
+.nav-item
+  padding: 0.4rem 1.0rem
+  font-size: 1.2rem
+  color: $white
+  background-color: $caribbean_green
+  border-radius: 0.8rem
+  display: inline-block
+  a
+    color: $white
+  a:hover
+    color: $white
+
+// Dropdown menus
+.sort-dropdown, .tags-dropdown
+  position: relative
+  display: inline-block
+
+.sort-content, .tags-content
+  display: none
+  position: absolute
+  background-color: #f9f9f9
+  min-width: 160px
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+  padding: 12px 16px
+  z-index: 1
+  a
+    color: $rhino
+  a:hover
+    color: $caribbean_green
+
+.sort-dropdown:hover, .tags-dropdown:hover
+  .sort-content, .tags-content
+    display: block

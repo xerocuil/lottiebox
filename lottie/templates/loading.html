@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LottieBox</title>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bulma.min.css') }}"> -->
+  <link rel="icon" type="image/x-icon" href="../static/assets/img/favicon.ico">
+  <script src="../static/assets/js/lottie-player.js"></script>
+
+  <style type="text/css">
+    #container {
+      width: 100%;
+    }
+    #loader{
+      width: 256px;
+      margin: 0 auto;
+    }
+    #loader img {
+      margin-top: 128px;
+      width: 256px;
+      height: auto;
+      background-color: #00c39d22;
+      border: 2px solid #35356466;
+    }
+    #loader p {
+      text-align: center;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <div id="loader">
+    <img src="../static/assets/img/logo.gif" background="transparent"  speed="1" loop autoplay></img>
+    <p>Loading...</p>
+  </div>
+</div>
+
+</body>
+</html>

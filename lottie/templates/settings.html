@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="columns">
+  <div class="column">
+    <h2>Settings</h2>
+
+    <form method='POST' enctype='multipart/form-data'>
+      {{ settings_form.hidden_tag() }}
+      <table class="table">
+        <tr>
+          <th>Autoplay:</th>
+          <td>{{ settings_form.autoplay_config() }}<br><em>Restart for changes to take effect.</em></td>
+        </tr>
+
+        <tr>
+          <td>{{ settings_form.submit(class_="button") }}</td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
