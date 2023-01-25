@@ -13,7 +13,7 @@
 - [x] Config.ini
 - [ ] Add details to view screen.
 
-## [0.1a] - 2022.122
+## [0.1a] - 2022.0125
 
 ### Added
 
