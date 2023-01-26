@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="column has-text-left">
+  <div class="lottieviewer">
+    <lottie-player style="background-image: url(/static/assets/img/checkerboard_64.svg)" src="{{ url_for('lottiebox_file', filename=filename) }}" background="transparent"  speed="1" controls loop autoplay>      
+    </lottie-player>
+  </div>
+</div>
+
+{% set tags = get_tags(file_info[0]) %}
+<div class="column has-text-left">
+  <table class="table is-fullwidth">
+    <tr>
+      <th colspan="2">{{ file_info[1] }}</th>
+    </tr>
+    <tr>
+      <th>File name</th>
+      <td>{{ file_info[0] }}</td>
+    </tr>
+    <tr>
+      <th>File Size</th>
+      <td>{{ file_info[2] }}</td>
+    </tr>
+    <tr>
+      <th>Modified</th>
+      <td>{{ file_info[4] }}</td>
+    </tr>
+    <tr>
+      <th>Tags</th>
+      <td>
+        {% for t in tags %}
+        <span class="tag"><a href="{{ url_for('lottiebox_search') }}?q={{ t }}">{{ t }}</a></span>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <a href="{{ url_for('lottiebox_file', filename=filename) }}" download>
+          <img class="icon" src="{{ url_for('static', filename='assets/img/download.svg') }}" alt="Download"></img> Download
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+{% endblock %}
+
+
+{% block sidebar %}
+
+{% include "sidebar_tags.html" %}
+{% include "sidebar_related.html" %}
+
+{% endblock %}

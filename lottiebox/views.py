@@ -5,18 +5,19 @@ from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 from wtforms.validators import InputRequired
 
-from lottie import lottiebox
+from lottiebox import lottiebox
 from models import LottieBox as lbm
 import helpers
 from settings import LottieBoxSettings as lbs
 from configparser import ConfigParser
 
-# Read lb_config.ini file
+## Load config
 lottiebox_config = ConfigParser()
 lottiebox_config.read(lbs.lb_config)
 autoplay=lottiebox_config['USERCONFIG']['autoplay']
 gallery=os.path.abspath(lottiebox_config['USERCONFIG']['lottiefiles'])
 
+## Home
 @lottiebox.route("/", methods=['GET'])
 @lottiebox.route("/lottiebox")
 def lottiebox_index():
@@ -27,9 +28,9 @@ def lottiebox_index():
     "index.html",
     query_results=query_results,
     order=order,
-    sort=sort,
-  )
+    sort=sort)
 
+## Add
 @lottiebox.route("/lottiebox/add", methods=['GET','POST'])
 def lottiebox_add():
   form = lbm.UploadFileForm()
@@ -43,10 +44,12 @@ def lottiebox_add():
 
   return render_template("upload.html", form=form)
 
-@lottiebox.route('/lottiefiles/download/<path:filename>')
+## File
+@lottiebox.route('/lottiefiles/file/<path:filename>')
 def lottiebox_file(filename):
     return send_from_directory(gallery, filename)
 
+## Search
 @lottiebox.route("/lottiebox/search", methods=['GET'])
 def lottiebox_search():
   order = request.args.get("order")
@@ -61,6 +64,7 @@ def lottiebox_search():
     sort=sort
   )
 
+## Settings
 @lottiebox.route("/lottiebox/settings", methods=['GET','POST'])
 def lottiebox_settings():
   settings_form = lbm.SettingsForm()
@@ -69,11 +73,19 @@ def lottiebox_settings():
     lottiebox_config.read(lbs.lb_config)
     userconfig = lottiebox_config["USERCONFIG"]
     userconfig["autoplay"] = str(settings_form.autoplay_config.data)
+    autoplay=userconfig["autoplay"]
     with open(lbs.lb_config, 'w') as conf:
       lottiebox_config.write(conf)
     # userconfig['gallery'] = settings_form.gallery_config
   return render_template("settings.html", settings_form=settings_form)
 
+## View
 @lottiebox.route('/lottiefiles/view/<path:filename>')
 def lottiebox_view(filename):
-  return render_template("view.html", filename=filename)
+  file_info = lbm.get_info(filename)
+  tags = helpers.get_tags2(filename)
+  related_files = lbm.get_related_files(tags, filename)
+  return render_template("view.html",
+    file_info=file_info,
+    filename=filename,
+    related_files=related_files)

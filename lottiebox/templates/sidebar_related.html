@@ -1,0 +1,15 @@
+      {% if related_files %}
+      <div class="panel-heading">Related</div>
+      <div class="panel-block">
+
+        <table class="table is-fullwidth has-text-left">
+          {% for f in related_files %}
+          <tr>
+            <td><a href="{{ url_for('lottiebox_view', filename=f['basename']) }}">{{ f['caption'] }}</a></td>
+            <td><lottie-player style="height: 32px; width: 32px" src="{{ url_for('lottiebox_file', filename=f['basename']) }}" background="transparent"  speed="1" loop autoplay>      
+          </lottie-player></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}

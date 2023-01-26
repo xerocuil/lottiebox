@@ -17,12 +17,17 @@
   <div class="card">
     <div class="card-image">
       <figure class="lottiefile image is-128x128"><a href="{{ url_for('lottiebox_view', filename=l['basename']) }}">
-        <lottie-player src="{{ url_for('lottiebox_file', filename=l['basename']) }}" background="transparent"  speed="1" loop {{ set_autoplay() }}></lottie-player>
+        <lottie-player style="background-image: url(/static/assets/img/checkerboard_32.svg)" class="small" src="{{ url_for('lottiebox_file', filename=l['basename']) }}" background="transparent"  speed="1" loop {{ set_autoplay() }}></lottie-player>
       </a></figure>
     </div>
     <div class="card-content">
-      <p>{{ l['caption'] }}</p>
-      <p><a href="{{ url_for('lottiebox_file', filename=l['basename']) }}" download>&#8595; Download</a></p>
+      <span class="caption">{{ l['caption'] }}</span>
+      <span class="card-link">
+        <a href="{{ url_for('lottiebox_file', filename=l['basename']) }}">
+        <img class="icon" src="{{ url_for('static', filename='assets/img/download.svg') }}" alt="Download"></img>
+        Download
+        </a>
+      </span>
     </div>
   </div>
 </div>

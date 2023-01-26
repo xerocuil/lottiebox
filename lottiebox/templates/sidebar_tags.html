@@ -1,0 +1,9 @@
+      <div class="panel-heading">Tags</div>
+
+      <div id="tags">
+        {% for t in get_tag_arr() %}
+        <span class="tag">
+          <a href="{{ url_for('lottiebox_search') }}?q={{ t }}" />{{ t }}</a>
+        </span>
+        {% endfor %}
+      </div>

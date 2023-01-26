@@ -9,4 +9,4 @@ lottiebox = Flask(__name__,
   template_folder='templates'
 )
 
-from lottie import views
+from lottiebox import views

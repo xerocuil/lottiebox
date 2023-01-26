@@ -27,39 +27,11 @@
       <nav class="column is-narrow">
         <ul>
           <li class="nav-item">
-            <span class="sort-dropdown">
-              <span class="dropdown-header">Sort</span>
-              <ul class="sort-content">
-                {% if sort == "basename" and order == "asc" %}
-                <li><a href="{{ url_for('lottiebox_index') }}?sort=basename&order=desc">Name &#8595;</a></li>
-                {% else %}
-                <li><a href="{{ url_for('lottiebox_index') }}?sort=basename&order=asc">Name &#8593;</a></li>
-                {% endif %}
-
-                {% if sort == "modified" and order == "asc" %}
-                <li><a href="{{ url_for('lottiebox_index') }}?sort=modified&order=desc">Modified &#8595;</a></li>
-                {% else %}
-                <li><a href="{{ url_for('lottiebox_index') }}?sort=modified&order=asc">Modified &#8593;</a></li>
-                {% endif %}
-              </ul>
-            </span>
+            <a href="{{ url_for('lottiebox_add') }}"><img class="icon" src="{{ url_for('static', filename='assets/img/add.svg') }}"> New</a>
           </li>
 
           <li class="nav-item">
-            <span class="tags-dropdown">
-              <span class="dropdown-header">Tags</span>
-              <ul class="tags-content">
-                {% for t in get_tag_arr() %}
-                <li>
-                  <a href="{{ url_for('lottiebox_search') }}?q={{ t }}" />{{ t }}</a>
-                </li>
-                {% endfor %}
-              </ul>
-            </span>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ url_for('lottiebox_add') }}">+ New</a>
+            <a href="{{ url_for('lottiebox_settings') }}"><img class="icon" src="{{ url_for('static', filename='assets/img/gear.svg') }}"> Settings</a>
           </li>
         </ul>
       </nav>
@@ -74,7 +46,7 @@
 <!-- body_content -->
 <div id="body-content" class="columns">
   <!-- article -->
-  <article class="column">
+  <article class="column is-four-fifths">
     <!-- article_main -->
     <div id="article-main" class="columns">
       
@@ -84,6 +56,14 @@
 
     </div>
   </article>
+
+  <div id="sidebar" class="column is-one-fifth">
+    <div class="panel">
+      {% block sidebar %}
+
+      {% endblock %}
+    </div>
+  </div>
 </div>
 
 </div>
