@@ -12,5 +12,5 @@ pyinstaller==5.7.0
 pyinstaller-hooks-contrib==2022.15
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.7
-Werkzeug==2.2.2
+Werkzeug==2.2.3
 WTForms==3.0.1
